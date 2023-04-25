@@ -45,7 +45,7 @@ h1{
 }
 .country{
   height: 200px;
-  width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,8 +54,8 @@ h1{
   text-align: center;
 }
 .country-container{
-display: grid;
-  grid-template-columns: auto auto auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

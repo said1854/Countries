@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
-// import { getAllCountries } from "./services/Service";
 import CountryCard from "./components/CountryCard";
 
 function App() {
@@ -28,8 +27,8 @@ function App() {
     <div className="App">
       <Header />
       <div className="country-container">
-        {countries.map((item, index) => {
-          return <CountryCard key={index} item={item} />;
+        {countries.map((country, index) => {
+          return <CountryCard country={country} key={index} />;
         })}
       </div>
     </div>
