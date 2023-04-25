@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <header>
-      <h1> Countries</h1>
+    <header className="bg-dark w-full py-2">
+      <h1 className=""> Countries</h1>
     </header>
   );
 }
