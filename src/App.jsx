@@ -10,6 +10,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [filteredCountries, setFilteredCountries] = new useState(countries);
   const [q, setQ] = useState("");
+  const [selectedItem, setSelectedItem] = useState("");
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -33,7 +34,13 @@ function App() {
           }
           return 0;
         });
-        console.log(sortedRes);
+        // let myArr = [];
+        // sortedRes.map((country) => {
+        //   if (!myArr.includes(country.continents[0])) {
+        //     myArr.push(country.continents[0]);
+        //   }
+        // });
+        // console.log(myArr);
         setCountry(sortedRes);
         setInitialCountry(sortedRes);
         setIsLoaded(true);
@@ -43,55 +50,68 @@ function App() {
       });
   }, []);
 
+  const populationFilter = (e) => {
+    console.log("populationFilter got triggered!");
+    const populationSort = countries.sort((a, b) => {
+      let fa = a.population;
+      let fb = b.population;
+      if (fa < fb) {
+        return -1;
+      }
+      if (fa > fb) {
+        return 1;
+      }
+      return 0;
+    });
+    setCountry(populationSort);
+  };
+
   const filter = (e) => {
     const query = e.target.value.toLowerCase();
     setQ(query);
     console.log(query);
-
     if (e.target.value == "") {
       setCountry(countries);
     } else {
       const newArray = initialCountry.filter((country) => {
         const countryName = country.name.common.toLowerCase();
+        // const countryCapital = country.capital[0].toLowerCase();
+        // console.log(country.capital[0]);
         return countryName.includes(query);
-
-        // return country.name.common.toLowerCase().startsWith(q.toLowerCase());
       });
       setCountry(newArray);
     }
   };
-  // const filter = () => {};
-  // const filter = (e) => {
-  //   const query = e.target.value;
-  //   setQ(query);
-  //   console.log(query);
 
-  //   if (query == "") {
-  //     pass;
-  //   } else {
-  //     const newArray = countries.filter((country) => {
-  //       return country.name.common.toLowercase().startsWith(query);
-  //     });
-  //     setCountry(newArray);
-  //   }
-  // };
+  const handleSelectChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    console.log(query);
+    setSelectedItem(query);
+    if (query !== "") {
+      const newArray = initialCountry.filter((country) => {
+        return country.continents[0].toLowerCase().includes(query);
+      });
+      setCountry(newArray);
+    }
+  };
 
   return (
     <div className="App">
       <Header />
-      <SearchInput q={q} filter={filter} />
-      <div className="w-2/3 mx-auto px-6 container flex flex-wrap bg-dark mt-8">
-        {/* {if (isLoaded){ 
-           <p>Loaded</p>
-        }else{ <p>not Loaded</p>}
-}          
-           */}
+      <SearchInput
+        q={q}
+        filter={filter}
+        selectedItem={selectedItem}
+        populationFilter={populationFilter}
+        handleSelectChange={handleSelectChange}
+      />
+      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
           countries.map((country, index) => {
             return <CountryCard country={country} key={index} />;
           })
         ) : (
-          <p className="text-light">Is Loading...</p>
+          <p className="text-light">Loading...</p>
         )}
       </div>
     </div>
