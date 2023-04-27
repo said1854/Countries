@@ -11,6 +11,9 @@ function App() {
   const [filteredCountries, setFilteredCountries] = new useState(countries);
   const [q, setQ] = useState("");
   const [selectedItem, setSelectedItem] = useState("");
+  const [sortByPopulation, setSortByPopulation] = useState(false);
+  const [order, setOrder] = useState(false);
+
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -34,13 +37,6 @@ function App() {
           }
           return 0;
         });
-        // let myArr = [];
-        // sortedRes.map((country) => {
-        //   if (!myArr.includes(country.continents[0])) {
-        //     myArr.push(country.continents[0]);
-        //   }
-        // });
-        // console.log(myArr);
         setCountry(sortedRes);
         setInitialCountry(sortedRes);
         setIsLoaded(true);
@@ -50,20 +46,32 @@ function App() {
       });
   }, []);
 
+  const unitedNationsFilter = () => {
+    console.log("united nations filter got triggered!");
+    const newArray = initialCountry.filter((country) => {
+      return country.unMember;
+    });
+    console.log(newArray);
+    // setCountry(newArray);
+  };
+
   const populationFilter = (e) => {
-    console.log("populationFilter got triggered!");
     const populationSort = countries.sort((a, b) => {
       let fa = a.population;
       let fb = b.population;
-      if (fa < fb) {
+      // console.log(typeof fa, fb);
+      if (fa > fb) {
         return -1;
       }
-      if (fa > fb) {
+      if (fa < fb) {
         return 1;
       }
       return 0;
     });
+    setOrder(true);
+    setSortByPopulation(!sortByPopulation);
     setCountry(populationSort);
+    console.log(populationSort);
   };
 
   const filter = (e) => {
@@ -84,7 +92,10 @@ function App() {
   };
 
   const handleSelectChange = (e) => {
+    console.log("Select func triggered!");
     const query = e.target.value.toLowerCase();
+    setOrder(false);
+    setSortByPopulation(false);
     console.log(query);
     setSelectedItem(query);
     if (query !== "") {
@@ -102,13 +113,22 @@ function App() {
         q={q}
         filter={filter}
         selectedItem={selectedItem}
+        sortByPopulation={sortByPopulation}
         populationFilter={populationFilter}
         handleSelectChange={handleSelectChange}
+        unitedNationsFilter={unitedNationsFilter}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
           countries.map((country, index) => {
-            return <CountryCard country={country} key={index} />;
+            return (
+              <CountryCard
+                country={country}
+                index={index}
+                order={order}
+                key={index}
+              />
+            );
           })
         ) : (
           <p className="text-light">Loading...</p>
