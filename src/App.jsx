@@ -91,14 +91,16 @@ function App() {
     }
   };
 
-  const handleSelectChange = (e) => {
+  const handleContinentChange = (e) => {
     console.log("Select func triggered!");
     const query = e.target.value.toLowerCase();
     setOrder(false);
     setSortByPopulation(false);
     console.log(query);
     setSelectedItem(query);
-    if (query !== "") {
+    if (query == "all") {
+      setCountry(initialCountry);
+    } else if (query !== "") {
       const newArray = initialCountry.filter((country) => {
         return country.continents[0].toLowerCase().includes(query);
       });
@@ -115,7 +117,7 @@ function App() {
         selectedItem={selectedItem}
         sortByPopulation={sortByPopulation}
         populationFilter={populationFilter}
-        handleSelectChange={handleSelectChange}
+        handleContinentChange={handleContinentChange}
         unitedNationsFilter={unitedNationsFilter}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">

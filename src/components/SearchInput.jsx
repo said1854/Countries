@@ -11,7 +11,7 @@ const SearchInput = ({
   filter,
   selectedItem,
   populationFilter,
-  handleSelectChange,
+  handleContinentChange,
   sortByPopulation,
   unitedNationsFilter,
 }) => {
@@ -36,7 +36,7 @@ const SearchInput = ({
       <select
         name="continent"
         value={selectedItem}
-        onChange={handleSelectChange}
+        onChange={handleContinentChange}
       >
         <option value="">Select Continent</option>
         <option value="asia">Asia</option>
@@ -46,6 +46,7 @@ const SearchInput = ({
         <option value="north america">North America</option>
         <option value="south america">South America</option>
         <option value="antarctica">Antarctica</option>
+        <option value="all">All</option>
       </select>
     </div>
   );
