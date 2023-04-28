@@ -47,14 +47,17 @@ const AppCopy = () => {
 
   const handleContinentSelect = (e) => {
     setSelectValue(e.target.value);
-    const continent = e.target.value.toLowerCase();
+    console.log(e.target.value);
+    // const selectValue = e.target.value.toLowerCase();
     setOrderByPopulation(false);
     setOrderByArea(false);
-    if (continent == "all") {
-      setCountry(initialCountry);
-    } else if (continent !== "") {
+    if (e.target.value == "all") {
+      setShownCountries(initialCountry);
+    } else if (e.target.value !== "") {
       const newArray = initialCountry.filter((country) => {
-        return country.continents[0].toLowerCase.includes(continent);
+        return (
+          country.continents[0].toLowerCase() == e.target.value.toLowerCase()
+        );
       });
       setShownCountries(newArray);
     }
@@ -73,11 +76,25 @@ const AppCopy = () => {
       }
       return 0;
     });
-
-    setOrder(true);
     setOrderByPopulation(!orderByPopulation);
-    setCountry(populationSort);
-    console.log(populationSort);
+  };
+
+  const handleOrderByArea = () => {
+    console.log("handle order by area triggered!");
+    const areaSort = shownCountries.sort((a, b) => {
+      let fa = a.area;
+      let fb = b.area;
+      console.log(fa, fb);
+      if (fa > fb) {
+        return -1;
+      } else if (fa < fb) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(orderByArea);
+    setOrderByArea(!orderByArea);
   };
 
   return (
@@ -90,11 +107,20 @@ const AppCopy = () => {
         handleContinentSelect={handleContinentSelect}
         selectValue={selectValue}
         handleOrderByPopulation={handleOrderByPopulation}
+        handleOrderByArea={handleOrderByArea}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
           shownCountries.map((country, index) => {
-            return <CountryCard country={country} index={index} key={index} />;
+            return (
+              <CountryCard
+                country={country}
+                index={index}
+                key={index}
+                orderByPopulation={orderByPopulation}
+                orderByArea={orderByArea}
+              />
+            );
           })
         ) : (
           <p className="text-light">Loading...</p>

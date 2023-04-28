@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import CountryCard from "./components/CountryCard";
-import SearchInput from "./components/SearchInput";
+import Topbar from "./components/Topbar";
 
-function App() {
+const AppCopy = () => {
   const [initialCountry, setInitialCountry] = useState([]);
-  const [countries, setCountry] = useState([]);
+  const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [filteredCountries, setFilteredCountries] = new useState(countries);
-  const [q, setQ] = useState("");
-  const [selectedItem, setSelectedItem] = useState("");
-  const [sortByPopulation, setSortByPopulation] = useState(false);
-  const [order, setOrder] = useState(false);
+  const [selectValue, setSelectValue] = useState();
+  const [orderByPopulation, setOrderByPopulation] = useState(false);
+  const [orderByArea, setOrderByArea] = useState(false);
+  const [sortbyContinent, setSortByContinent] = useState(false);
 
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -37,8 +35,9 @@ function App() {
           }
           return 0;
         });
-        setCountry(sortedRes);
+        console.log(sortedRes);
         setInitialCountry(sortedRes);
+        setShownCountries(sortedRes);
         setIsLoaded(true);
       })
       .catch((e) => {
@@ -46,17 +45,26 @@ function App() {
       });
   }, []);
 
-  const unitedNationsFilter = () => {
-    console.log("united nations filter got triggered!");
-    const newArray = initialCountry.filter((country) => {
-      return country.unMember;
-    });
-    console.log(newArray);
-    // setCountry(newArray);
+  const handleContinentSelect = (e) => {
+    setSelectValue(e.target.value);
+    console.log(e.target.value);
+    // const selectValue = e.target.value.toLowerCase();
+    setOrderByPopulation(false);
+    setOrderByArea(false);
+    if (e.target.value == "all") {
+      setShownCountries(initialCountry);
+    } else if (e.target.value !== "") {
+      const newArray = initialCountry.filter((country) => {
+        return (
+          country.continents[0].toLowerCase() == e.target.value.toLowerCase()
+        );
+      });
+      setShownCountries(newArray);
+    }
   };
 
-  const populationFilter = (e) => {
-    const populationSort = countries.sort((a, b) => {
+  const handleOrderByPopulation = () => {
+    const populationSort = shownCountries.sort((a, b) => {
       let fa = a.population;
       let fb = b.population;
       // console.log(typeof fa, fb);
@@ -68,67 +76,49 @@ function App() {
       }
       return 0;
     });
-    setOrder(true);
-    setSortByPopulation(!sortByPopulation);
-    setCountry(populationSort);
-    console.log(populationSort);
+    setOrderByPopulation(!orderByPopulation);
   };
 
-  const filter = (e) => {
-    const query = e.target.value.toLowerCase();
-    setQ(query);
-    console.log(query);
-    if (e.target.value == "") {
-      setCountry(countries);
-    } else {
-      const newArray = initialCountry.filter((country) => {
-        const countryName = country.name.common.toLowerCase();
-        // const countryCapital = country.capital[0].toLowerCase();
-        // console.log(country.capital[0]);
-        return countryName.includes(query);
-      });
-      setCountry(newArray);
-    }
-  };
-
-  const handleContinentChange = (e) => {
-    console.log("Select func triggered!");
-    const query = e.target.value.toLowerCase();
-    setOrder(false);
-    setSortByPopulation(false);
-    console.log(query);
-    setSelectedItem(query);
-    if (query == "all") {
-      setCountry(initialCountry);
-    } else if (query !== "") {
-      const newArray = initialCountry.filter((country) => {
-        return country.continents[0].toLowerCase().includes(query);
-      });
-      setCountry(newArray);
-    }
+  const handleOrderByArea = () => {
+    console.log("handle order by area triggered!");
+    const areaSort = shownCountries.sort((a, b) => {
+      let fa = a.area;
+      let fb = b.area;
+      console.log(fa, fb);
+      if (fa > fb) {
+        return -1;
+      } else if (fa < fb) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    console.log(orderByArea);
+    setOrderByArea(!orderByArea);
   };
 
   return (
-    <div className="App">
+    <>
       <Header />
-      <SearchInput
-        q={q}
-        filter={filter}
-        selectedItem={selectedItem}
-        sortByPopulation={sortByPopulation}
-        populationFilter={populationFilter}
-        handleContinentChange={handleContinentChange}
-        unitedNationsFilter={unitedNationsFilter}
+      <Topbar
+        orderByPopulation={orderByPopulation}
+        orderByArea={orderByArea}
+        sortbyContinent={sortbyContinent}
+        handleContinentSelect={handleContinentSelect}
+        selectValue={selectValue}
+        handleOrderByPopulation={handleOrderByPopulation}
+        handleOrderByArea={handleOrderByArea}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
-          countries.map((country, index) => {
+          shownCountries.map((country, index) => {
             return (
               <CountryCard
                 country={country}
                 index={index}
-                order={order}
                 key={index}
+                orderByPopulation={orderByPopulation}
+                orderByArea={orderByArea}
               />
             );
           })
@@ -136,8 +126,8 @@ function App() {
           <p className="text-light">Loading...</p>
         )}
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default App;
+export default AppCopy;

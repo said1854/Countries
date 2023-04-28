@@ -8,18 +8,22 @@ const Topbar = ({
   sortbyContinent,
   handleContinentSelect,
   handleOrderByPopulation,
+  handleOrderByArea,
   selectValue,
 }) => {
   return (
     <div className="flex justify-between w-5/6 mx-auto mt-4">
       <div>
         <button className="btn mr-4" onClick={handleOrderByPopulation}>
-          <span>Population</span>
+          <span className="mr-2">Population</span>
           {orderByPopulation && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
-        <button className="btn">Area</button>
+        <button className="btn" onClick={handleOrderByArea}>
+          <span className="mr-2">Area</span>
+          {orderbyArea && <FontAwesomeIcon icon={faArrowDown} />}
+        </button>
       </div>
-      <input type="text" className="bg-light rounded-xl" />
+      <input type="text" className="bg-light rounded-xl px-4" />
       <select
         name="continent"
         value={selectValue}
