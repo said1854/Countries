@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import CountryCard from "./components/CountryCard";
 import Topbar from "./components/Topbar";
 
-const AppCopy = () => {
+const App = () => {
   const [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -11,7 +12,7 @@ const AppCopy = () => {
   const [orderByPopulation, setOrderByPopulation] = useState(false);
   const [orderByArea, setOrderByArea] = useState(false);
   const [sortbyContinent, setSortByContinent] = useState(false);
-
+  console.log(orderByArea);
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -47,12 +48,11 @@ const AppCopy = () => {
 
   const handleContinentSelect = (e) => {
     setSelectValue(e.target.value);
-    console.log(e.target.value);
-    // const selectValue = e.target.value.toLowerCase();
     setOrderByPopulation(false);
     setOrderByArea(false);
     if (e.target.value == "all") {
       setShownCountries(initialCountry);
+      setSortByContinent(false);
     } else if (e.target.value !== "") {
       const newArray = initialCountry.filter((country) => {
         return (
@@ -60,6 +60,7 @@ const AppCopy = () => {
         );
       });
       setShownCountries(newArray);
+      setSortByContinent(true);
     }
   };
 
@@ -67,7 +68,6 @@ const AppCopy = () => {
     const populationSort = shownCountries.sort((a, b) => {
       let fa = a.population;
       let fb = b.population;
-      // console.log(typeof fa, fb);
       if (fa > fb) {
         return -1;
       }
@@ -76,15 +76,15 @@ const AppCopy = () => {
       }
       return 0;
     });
+    setOrderByArea(false);
+    setShownCountries(populationSort);
     setOrderByPopulation(!orderByPopulation);
   };
 
   const handleOrderByArea = () => {
-    console.log("handle order by area triggered!");
     const areaSort = shownCountries.sort((a, b) => {
       let fa = a.area;
       let fb = b.area;
-      console.log(fa, fb);
       if (fa > fb) {
         return -1;
       } else if (fa < fb) {
@@ -93,7 +93,8 @@ const AppCopy = () => {
         return 0;
       }
     });
-    console.log(orderByArea);
+    setOrderByPopulation(false);
+    setShownCountries(areaSort);
     setOrderByArea(!orderByArea);
   };
 
@@ -102,12 +103,11 @@ const AppCopy = () => {
       <Header />
       <Topbar
         orderByPopulation={orderByPopulation}
-        orderByArea={orderByArea}
-        sortbyContinent={sortbyContinent}
-        handleContinentSelect={handleContinentSelect}
         selectValue={selectValue}
-        handleOrderByPopulation={handleOrderByPopulation}
         handleOrderByArea={handleOrderByArea}
+        handleContinentSelect={handleContinentSelect}
+        handleOrderByPopulation={handleOrderByPopulation}
+        orderByArea={orderByArea}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
@@ -117,6 +117,7 @@ const AppCopy = () => {
                 country={country}
                 index={index}
                 key={index}
+                sortbyContinent={sortbyContinent}
                 orderByPopulation={orderByPopulation}
                 orderByArea={orderByArea}
               />
@@ -130,4 +131,12 @@ const AppCopy = () => {
   );
 };
 
-export default AppCopy;
+// const App = () => {
+//   return (
+//     <Router>
+//       <Route exact path="/" component={HomePage} />
+//     </Router>
+//   );
+// };
+
+export default App;

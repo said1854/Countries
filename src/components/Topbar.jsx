@@ -4,8 +4,7 @@ import React from "react";
 
 const Topbar = ({
   orderByPopulation,
-  orderbyArea,
-  sortbyContinent,
+  orderByArea,
   handleContinentSelect,
   handleOrderByPopulation,
   handleOrderByArea,
@@ -20,7 +19,7 @@ const Topbar = ({
         </button>
         <button className="btn" onClick={handleOrderByArea}>
           <span className="mr-2">Area</span>
-          {orderbyArea && <FontAwesomeIcon icon={faArrowDown} />}
+          {orderByArea && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
       </div>
       <input type="text" className="bg-light rounded-xl px-4" />
@@ -29,7 +28,9 @@ const Topbar = ({
         value={selectValue}
         onChange={handleContinentSelect}
       >
-        <option value="">Select Continent</option>
+        <option value="" disabled selected>
+          Select Continent
+        </option>
         <option value="asia">Asia</option>
         <option value="europe">Europe</option>
         <option value="africa">Africa</option>
