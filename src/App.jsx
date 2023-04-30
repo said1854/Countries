@@ -12,7 +12,7 @@ const App = () => {
   const [orderByPopulation, setOrderByPopulation] = useState(false);
   const [orderByArea, setOrderByArea] = useState(false);
   const [sortbyContinent, setSortByContinent] = useState(false);
-  console.log(orderByArea);
+
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -36,7 +36,6 @@ const App = () => {
           }
           return 0;
         });
-        console.log(sortedRes);
         setInitialCountry(sortedRes);
         setShownCountries(sortedRes);
         setIsLoaded(true);
@@ -45,6 +44,19 @@ const App = () => {
         console.log(e.message);
       });
   }, []);
+
+  const handleSearch = (e) => {
+    const keyword = e.target.value.toLowerCase();
+    console.log(keyword);
+    if (keyword == "") {
+      setShownCountries(shownCountries);
+    } else {
+      const newArray = initialCountry.filter((country) =>
+        country.name.common.toLowerCase().includes(keyword.toLowerCase())
+      );
+      setShownCountries(newArray);
+    }
+  };
 
   const handleContinentSelect = (e) => {
     setSelectValue(e.target.value);
@@ -102,6 +114,7 @@ const App = () => {
     <>
       <Header />
       <Topbar
+        handleSearch={handleSearch}
         orderByPopulation={orderByPopulation}
         selectValue={selectValue}
         handleOrderByArea={handleOrderByArea}

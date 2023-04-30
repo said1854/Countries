@@ -9,6 +9,7 @@ const Topbar = ({
   handleOrderByPopulation,
   handleOrderByArea,
   selectValue,
+  handleSearch,
 }) => {
   return (
     <div className="flex justify-between w-5/6 mx-auto mt-4">
@@ -22,7 +23,11 @@ const Topbar = ({
           {orderByArea && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
       </div>
-      <input type="text" className="bg-light rounded-xl px-4" />
+      <input
+        type="text"
+        className="bg-light rounded-xl px-4"
+        onChange={handleSearch}
+      />
       <select
         name="continent"
         value={selectValue}
