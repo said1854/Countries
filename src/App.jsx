@@ -3,6 +3,7 @@ import { Link, BrowserRouter as Router, Route } from "react-router-dom";
 import Header from "./components/Header";
 import CountryCard from "./components/CountryCard";
 import Topbar from "./components/Topbar";
+import NatoMembers from "./components/nato.json";
 
 const App = () => {
   const [initialCountry, setInitialCountry] = useState([]);
@@ -13,6 +14,7 @@ const App = () => {
   const [orderByArea, setOrderByArea] = useState(false);
   const [sortbyContinent, setSortByContinent] = useState(false);
   const [unMember, setUnMember] = useState(false);
+  const [natoMember, setNatoMember] = useState(false);
 
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -113,22 +115,46 @@ const App = () => {
     setOrderByArea(!orderByArea);
   };
 
-  const handleUnMemberSort = () => {
-    console.log(!unMember);
-    setUnMember(!unMember);
-    console.log(!unMember);
+  console.log();
 
-    if (!unMember) {
-      const newArray = shownCountries.filter((country) => country.unMember);
+  const handleNatoMemberSort = () => {
+    setNatoMember(!natoMember);
+    console.log("nato member handle click ");
+    if (!natoMember) {
+      const newArray = shownCountries.filter((country) => {
+        return NatoMembers.includes(country.name.common);
+      });
       console.log(newArray);
       setShownCountries(newArray);
-    } else if (unMember) {
-      console;
+    } else {
       setShownCountries(initialCountry);
     }
-    setOrderByArea(false);
-    setOrderByPopulation(false);
+    // setOrderByArea(false);
+    // setOrderByPopulation(false);
   };
+  // const handleNatoMemberSort = () => {
+  //   setNatoMember(!natoMember);
+
+  //   // if (!natoMember) {
+  //   //   const newArray = shownCountries.filter((country) => {
+  //   //     return natoMember.includes(country.name.common);
+  //   //   });
+  //   //   console.log(newArray);
+  //   //   setShownCountries(newArray);
+  //   // } else if (natoMember) {
+  //   //   setShownCountries(initialCountry);
+  //   // }
+  //   if (natoMember) {
+  //     const newArray = shownCountries.filter((country) => {
+  //       return natoMember.includes(country.name.common);
+  //     });
+  //     setShownCountries(newArray);
+  //   } else {
+  //     setShownCountries(initialCountry);
+  //   }
+  //   setOrderByArea(false);
+  //   setOrderByPopulation(false);
+  // };
 
   return (
     <>
@@ -141,8 +167,8 @@ const App = () => {
         handleContinentSelect={handleContinentSelect}
         handleOrderByPopulation={handleOrderByPopulation}
         orderByArea={orderByArea}
-        unMember={unMember}
-        handleUnMemberSort={handleUnMemberSort}
+        natoMember={natoMember}
+        handleNatoMemberSort={handleNatoMemberSort}
       />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
         {isLoaded ? (
@@ -155,7 +181,7 @@ const App = () => {
                 sortbyContinent={sortbyContinent}
                 orderByPopulation={orderByPopulation}
                 orderByArea={orderByArea}
-                unMember={unMember}
+                natoMember={natoMember}
               />
             );
           })

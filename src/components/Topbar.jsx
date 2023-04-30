@@ -12,6 +12,8 @@ const Topbar = ({
   handleSearch,
   unMember,
   handleUnMemberSort,
+  natoMember,
+  handleNatoMemberSort,
 }) => {
   return (
     <div className="flex justify-between w-5/6 mx-auto mt-4">
@@ -24,9 +26,9 @@ const Topbar = ({
           <span className="mr-2">Area</span>
           {orderByArea && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
-        <button className="btn" onClick={handleUnMemberSort}>
-          <span className="mr-2">UNmember</span>
-          {unMember && <FontAwesomeIcon icon={faThumbsUp} />}
+        <button className="btn mr-4" onClick={handleNatoMemberSort}>
+          <span className="mr-2">Nato Member</span>
+          {natoMember && <FontAwesomeIcon icon={faThumbsUp} />}
         </button>
       </div>
       <input
