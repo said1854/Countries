@@ -1,4 +1,4 @@
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
@@ -10,6 +10,8 @@ const Topbar = ({
   handleOrderByArea,
   selectValue,
   handleSearch,
+  unMember,
+  handleUnMemberSort,
 }) => {
   return (
     <div className="flex justify-between w-5/6 mx-auto mt-4">
@@ -18,9 +20,13 @@ const Topbar = ({
           <span className="mr-2">Population</span>
           {orderByPopulation && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
-        <button className="btn" onClick={handleOrderByArea}>
+        <button className="btn mr-4" onClick={handleOrderByArea}>
           <span className="mr-2">Area</span>
           {orderByArea && <FontAwesomeIcon icon={faArrowDown} />}
+        </button>
+        <button className="btn" onClick={handleUnMemberSort}>
+          <span className="mr-2">UNmember</span>
+          {unMember && <FontAwesomeIcon icon={faThumbsUp} />}
         </button>
       </div>
       <input

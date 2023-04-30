@@ -2,12 +2,17 @@ const CountryCard = (props) => {
   return (
     <div className="w-56 m-2 bg-light border rounded-lg p-2 font-mono">
       <h3>
-        {props.orderByArea && !props.orderByPopulation ? (
+        {props.orderByArea && !props.orderByPopulation && !props.unMember ? (
           <h4>{props.index + 1}</h4>
         ) : (
           <></>
         )}
-        {props.orderByPopulation && !props.orderByArea ? (
+        {props.orderByPopulation && !props.orderByArea && !props.unMember ? (
+          <h4>{props.index + 1}</h4>
+        ) : (
+          <></>
+        )}
+        {!props.orderByPopulation && !props.orderByArea && props.unMember ? (
           <h4>{props.index + 1}</h4>
         ) : (
           <></>
