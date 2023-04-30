@@ -15,7 +15,6 @@ const App = () => {
   const [sortbyContinent, setSortByContinent] = useState(false);
   const [unMember, setUnMember] = useState(false);
   const [natoMember, setNatoMember] = useState(false);
-
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -65,6 +64,7 @@ const App = () => {
     setSelectValue(e.target.value);
     setOrderByPopulation(false);
     setOrderByArea(false);
+    setNatoMember(false);
     if (e.target.value == "all") {
       setShownCountries(initialCountry);
       setSortByContinent(false);
@@ -115,8 +115,6 @@ const App = () => {
     setOrderByArea(!orderByArea);
   };
 
-  console.log();
-
   const handleNatoMemberSort = () => {
     setNatoMember(!natoMember);
     console.log("nato member handle click ");
@@ -128,33 +126,11 @@ const App = () => {
       setShownCountries(newArray);
     } else {
       setShownCountries(initialCountry);
+      setSelectValue("");
     }
-    // setOrderByArea(false);
-    // setOrderByPopulation(false);
+    setOrderByArea(false);
+    setOrderByPopulation(false);
   };
-  // const handleNatoMemberSort = () => {
-  //   setNatoMember(!natoMember);
-
-  //   // if (!natoMember) {
-  //   //   const newArray = shownCountries.filter((country) => {
-  //   //     return natoMember.includes(country.name.common);
-  //   //   });
-  //   //   console.log(newArray);
-  //   //   setShownCountries(newArray);
-  //   // } else if (natoMember) {
-  //   //   setShownCountries(initialCountry);
-  //   // }
-  //   if (natoMember) {
-  //     const newArray = shownCountries.filter((country) => {
-  //       return natoMember.includes(country.name.common);
-  //     });
-  //     setShownCountries(newArray);
-  //   } else {
-  //     setShownCountries(initialCountry);
-  //   }
-  //   setOrderByArea(false);
-  //   setOrderByPopulation(false);
-  // };
 
   return (
     <>
@@ -192,13 +168,5 @@ const App = () => {
     </>
   );
 };
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Route exact path="/" component={HomePage} />
-//     </Router>
-//   );
-// };
 
 export default App;
