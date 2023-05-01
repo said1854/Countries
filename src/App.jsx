@@ -146,7 +146,7 @@ const App = () => {
         natoMember={natoMember}
         handleNatoMemberSort={handleNatoMemberSort}
       />
-      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded">
+      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl">
         {isLoaded ? (
           shownCountries.map((country, index) => {
             return (

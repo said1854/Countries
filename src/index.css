@@ -9,7 +9,7 @@
     .btn{
         @apply bg-dark p-2 text-light rounded min-w-[100px]      
     }
-    /* .App{
-        @apply flex justify-center
-    } */
+    h4{
+        
+    }
 }
