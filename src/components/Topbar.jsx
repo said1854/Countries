@@ -16,8 +16,8 @@ const Topbar = ({
   handleNatoMemberSort,
 }) => {
   return (
-    <div className="flex justify-between w-5/6 mx-auto mt-4">
-      <div className="w-1/3">
+    <div className="md:flex justify-between w-5/6 mx-auto mt-4 ">
+      <div className="w-1/3 flex">
         <button className="btn mr-4" onClick={handleOrderByPopulation}>
           <span className="mr-2">Population</span>
           {orderByPopulation && <FontAwesomeIcon icon={faArrowDown} />}
@@ -31,7 +31,7 @@ const Topbar = ({
           {natoMember && <FontAwesomeIcon icon={faThumbsUp} />}
         </button>
       </div>
-      <div className="w-1/3 text-center h-full">
+      <div className="w-1/3 text-center my-2 h-full">
         <input
           placeholder="Search Country"
           type="text"
@@ -39,9 +39,10 @@ const Topbar = ({
           onChange={handleSearch}
         />
       </div>
-      <div className="w-1/3 text-right py-2">
+      <div className="w-1/3 text-right py-4 text-lg">
         <select
           name="continent"
+          className="cursor-pointer"
           value={selectValue}
           onChange={handleContinentSelect}
         >

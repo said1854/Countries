@@ -7,9 +7,6 @@
         @apply text-3xl flex justify-center text-light
     }
     .btn{
-        @apply bg-dark p-2 text-light rounded min-w-[100px]      
-    }
-    h4{
-        
+        @apply bg-dark md:p-2 text-light rounded min-w-[100px] hover:bg-slate-800 text-sm md:text-lg overflow-auto 
     }
 }
