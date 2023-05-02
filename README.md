@@ -9,7 +9,8 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 ```bash
 git clone
 cd countries
-pip install ~ yard add
+npm install ~ yarn add
+npm run dev ~ yarn dev
 ```
 
 ## Contributing

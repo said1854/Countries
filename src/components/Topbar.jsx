@@ -18,7 +18,10 @@ const Topbar = ({
   return (
     <div className="md:flex justify-between w-5/6 mx-auto mt-4 ">
       <div className="w-1/3 flex">
-        <button className="btn mr-4" onClick={handleOrderByPopulation}>
+        <button
+          className="btn mr-4 overflow-hidden"
+          onClick={handleOrderByPopulation}
+        >
           <span className="mr-2">Population</span>
           {orderByPopulation && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
