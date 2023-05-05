@@ -27,6 +27,7 @@ const App = () => {
   useEffect(() => {
     fetchData()
       .then((res) => {
+        console.log(res);
         const sortedRes = res.sort((a, b) => {
           let fa = a.name.common.toLowerCase();
           let fb = b.name.common.toLowerCase();
@@ -117,7 +118,6 @@ const App = () => {
 
   const handleNatoMemberSort = () => {
     setNatoMember(!natoMember);
-    console.log("nato member handle click ");
     if (!natoMember) {
       const newArray = shownCountries.filter((country) => {
         return NatoMembers.includes(country.name.common);
