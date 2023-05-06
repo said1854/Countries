@@ -45,7 +45,7 @@ const Topbar = ({
       <div className="w-1/3 text-right py-4 text-lg">
         <select
           name="continent"
-          className="cursor-pointer"
+          className="cursor-pointer bg-dark"
           value={selectValue}
           onChange={handleContinentSelect}
         >

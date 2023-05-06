@@ -133,7 +133,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div>
       <Header />
       <Topbar
         handleSearch={handleSearch}
@@ -165,7 +165,7 @@ const App = () => {
           <p className="text-light">Loading...</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
