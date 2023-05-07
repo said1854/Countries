@@ -13,7 +13,7 @@ const CountryCard = ({ country, index, orderByArea, orderByPopulation }) => {
           {country.name.common}
         </div>
         <p>Population: {country.population.toLocaleString()}</p>
-        <p>Area: {country.area.toLocaleString()}km2</p>
+        <p>Area: {country.area.toLocaleString()} km2</p>
         <p>Capital: {country.capital}</p>
         <p>
           <span className="bold">Continent:</span> {country.continents}

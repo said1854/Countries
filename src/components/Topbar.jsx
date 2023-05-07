@@ -42,10 +42,10 @@ const Topbar = ({
           onChange={handleSearch}
         />
       </div>
-      <div className="w-1/3 text-right py-4 text-lg">
+      <div className="w-1/3 text-right text-lg">
         <select
           name="continent"
-          className="cursor-pointer bg-dark"
+          className="cursor-pointer bg-dark p-4 text-light rounded"
           value={selectValue}
           onChange={handleContinentSelect}
         >
