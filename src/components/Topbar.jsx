@@ -49,7 +49,7 @@ const Topbar = () => {
           value={selectValue}
           onChange={handleContinentSelect}
         >
-          <option value="" disabled selected>
+          <option value="" disabled>
             Select Continent
           </option>
           <option value="asia">Asia</option>
