@@ -4,8 +4,12 @@ import Header from "./components/Header";
 import CountryCard from "./components/CountryCard";
 import Topbar from "./components/Topbar";
 import NatoMembers from "./components/nato.json";
+import SiteContext from "./context/SiteContext";
+import Footer from "./components/Footer";
 
 const App = () => {
+  const [language, setLanguage] = useState("en");
+  const [theme, setTheme] = useState("light");
   const [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -15,6 +19,7 @@ const App = () => {
   const [sortbyContinent, setSortByContinent] = useState(false);
   const [unMember, setUnMember] = useState(false);
   const [natoMember, setNatoMember] = useState(false);
+
   const fetchData = async () => {
     const response = await fetch("https://restcountries.com/v3.1/all");
     if (!response.ok) {
@@ -132,40 +137,39 @@ const App = () => {
     setOrderByPopulation(false);
   };
 
+  const data = {
+    theme,
+    setTheme,
+    language,
+    setLanguage,
+    orderByArea,
+    handleOrderByArea,
+    natoMember,
+    handleNatoMemberSort,
+    handleSearch,
+    orderByPopulation,
+    selectValue,
+    handleContinentSelect,
+    handleOrderByPopulation,
+    orderByArea,
+    orderByPopulation,
+  };
+
   return (
-    <div>
-      <Header />
-      <Topbar
-        handleSearch={handleSearch}
-        orderByPopulation={orderByPopulation}
-        selectValue={selectValue}
-        handleOrderByArea={handleOrderByArea}
-        handleContinentSelect={handleContinentSelect}
-        handleOrderByPopulation={handleOrderByPopulation}
-        orderByArea={orderByArea}
-        natoMember={natoMember}
-        handleNatoMemberSort={handleNatoMemberSort}
-      />
+    <SiteContext.Provider value={data}>
+      <Header theme={theme} setTheme={setTheme} />
+      <Topbar />
       <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl">
         {isLoaded ? (
           shownCountries.map((country, index) => {
-            return (
-              <CountryCard
-                country={country}
-                index={index}
-                key={index}
-                sortbyContinent={sortbyContinent}
-                orderByPopulation={orderByPopulation}
-                orderByArea={orderByArea}
-                natoMember={natoMember}
-              />
-            );
+            return <CountryCard country={country} index={index} key={index} />;
           })
         ) : (
           <p className="text-light">Loading...</p>
         )}
       </div>
-    </div>
+      <Footer />
+    </SiteContext.Provider>
   );
 };
 

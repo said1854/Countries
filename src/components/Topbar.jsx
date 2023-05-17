@@ -1,20 +1,20 @@
 import { faArrowDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import { useContext } from "react";
+import SiteContext from "../context/SiteContext";
 
-const Topbar = ({
-  orderByPopulation,
-  orderByArea,
-  handleContinentSelect,
-  handleOrderByPopulation,
-  handleOrderByArea,
-  selectValue,
-  handleSearch,
-  unMember,
-  handleUnMemberSort,
-  natoMember,
-  handleNatoMemberSort,
-}) => {
+const Topbar = () => {
+  const {
+    orderByArea,
+    handleOrderByArea,
+    natoMember,
+    handleNatoMemberSort,
+    orderByPopulation,
+    handleContinentSelect,
+    handleOrderByPopulation,
+    selectValue,
+    handleSearch,
+  } = useContext(SiteContext);
   return (
     <div className="md:flex justify-between w-5/6 mx-auto mt-4 ">
       <div className="w-1/3 flex">

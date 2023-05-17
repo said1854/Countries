@@ -1,4 +1,8 @@
-const CountryCard = ({ country, index, orderByArea, orderByPopulation }) => {
+import { useContext } from "react";
+import SiteContext from "../context/SiteContext";
+
+const CountryCard = ({ country, index }) => {
+  const { orderByArea, orderByPopulation } = useContext(SiteContext);
   return (
     <div className="w-56 mx-auto my-4 bg-light rounded-xl font-dark font-mono">
       <img
