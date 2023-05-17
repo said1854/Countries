@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    h1{
+    .h1{
         @apply text-3xl flex justify-center text-light
     }
     .btn{

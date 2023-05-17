@@ -5,46 +5,43 @@ import { faMoon, faToggleOn, faSun } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  // const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
+  const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
 
   return (
-    <header className="bg-dark w-full py-2 flex justify-between">
-      {/* <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/blog">Blog</NavLink>
-      </nav> */}
-
-      <h1 className="">
-        <a href="/">Countries</a>
-      </h1>
-      <div className="text-white flex px-4">
-        {/* <p>{theme}</p>
-        {theme == "light" ? (
+    <header className="bg-dark w-full py-2">
+      <div className="flex justify-between w-5/6 mx-auto">
+        <div>some text</div>
+        <div className="h1">
+          <a href="/">Countries</a>
+        </div>
+        <div className="text-white flex px-4">
+          <p>{theme}</p>
+          {theme == "light" ? (
+            <FontAwesomeIcon
+              className="mx-4"
+              icon={faMoon}
+              onClick={() => setTheme("dark")}
+            />
+          ) : (
+            <FontAwesomeIcon
+              className="mx-4"
+              icon={faSun}
+              onClick={() => setTheme("light")}
+            />
+          )}
+          <p>{language}</p>
           <FontAwesomeIcon
-            className="mx-4"
-            icon={faMoon}
-            onClick={() => setTheme("dark")}
+            icon={faToggleOn}
+            onClick={() =>
+              language == "en" ? setLanguage("tr") : setLanguage("en")
+            }
           />
-        ) : (
-          <FontAwesomeIcon
-            className="mx-4"
-            icon={faSun}
-            onClick={() => setTheme("light")}
-          />
-        )}
-        <p>{language}</p>
-        <FontAwesomeIcon
-          icon={faToggleOn}
-          onClick={() =>
-            language == "en" ? setLanguage("tr") : setLanguage("en")
-          }
-        /> */}
-        <nav>
+          {/* <nav>
           <Link to="/">Home</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/blog">Blog</Link>
-        </nav>
+        </nav> */}
+        </div>
       </div>
     </header>
   );

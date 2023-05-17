@@ -2,11 +2,19 @@ import { useContext } from "react";
 import SiteContext from "../context/SiteContext";
 
 const Footer = () => {
-  const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
-
+  const { isLoaded } = useContext(SiteContext);
+  console.log(isLoaded);
   return (
-    <div className="bg-dark w-full py-2 mt-4 text-center text-white">
-      Footer
+    <div>
+      {isLoaded ? (
+        <footer className="bg-dark w-full py-2 mt-4 text-center text-white ">
+          Footer
+        </footer>
+      ) : (
+        <footer className="bg-dark w-full py-2 mt-4 text-center text-white bottom-0">
+          Footer
+        </footer>
+      )}
     </div>
   );
 };

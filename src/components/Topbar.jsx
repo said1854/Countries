@@ -22,7 +22,13 @@ const Topbar = () => {
           className="btn mr-4 overflow-hidden"
           onClick={handleOrderByPopulation}
         >
-          <span className="mr-2">Population</span>
+          <span
+            className={
+              orderByPopulation && natoMember ? "mr-2 text-sm" : "mr-2"
+            }
+          >
+            Population
+          </span>
           {orderByPopulation && <FontAwesomeIcon icon={faArrowDown} />}
         </button>
         <button className="btn mr-4" onClick={handleOrderByArea}>

@@ -3,6 +3,8 @@ import SiteContext from "../context/SiteContext";
 import Topbar from "../components/Topbar";
 import Footer from "../components/Footer";
 import CountryCard from "../components/CountryCard";
+import NatoMembers from "../data/nato.json";
+import Header from "../components/Header";
 
 const Home = () => {
   const [language, setLanguage] = useState("en");
@@ -155,17 +157,24 @@ const Home = () => {
 
   return (
     <SiteContext.Provider value={data}>
-      <Topbar />
-      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl">
-        {isLoaded ? (
-          shownCountries.map((country, index) => {
-            return <CountryCard country={country} index={index} key={index} />;
-          })
-        ) : (
-          <p className="text-light">Loading...</p>
-        )}
+      <div
+        className={isLoaded ? "" : "flex flex-col min-h-screen justify-between"}
+      >
+        <Header />
+        <Topbar />
+        <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl">
+          {isLoaded ? (
+            shownCountries.map((country, index) => {
+              return (
+                <CountryCard country={country} index={index} key={index} />
+              );
+            })
+          ) : (
+            <p className="text-light">Loading...</p>
+          )}
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </SiteContext.Provider>
   );
 };
