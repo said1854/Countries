@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div>
       {isLoaded ? (
-        <footer className="bg-dark w-full py-2 mt-4 text-center text-white ">
+        <footer className="bg-dark w-full py-2 mt-4 text-center text-white dark:border">
           Footer
         </footer>
       ) : (

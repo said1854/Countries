@@ -16,7 +16,7 @@ const Topbar = () => {
     handleSearch,
   } = useContext(SiteContext);
   return (
-    <div className="md:flex justify-between w-5/6 mx-auto mt-4 ">
+    <div className="md:flex justify-between w-5/6 mx-auto mt-4">
       <div className="w-1/3 flex">
         <button
           className="btn mr-4 overflow-hidden"
@@ -51,7 +51,7 @@ const Topbar = () => {
       <div className="w-1/3 text-right text-lg">
         <select
           name="continent"
-          className="cursor-pointer bg-dark p-4 text-light rounded"
+          className="cursor-pointer bg-dark p-4 text-light rounded dark:border"
           value={selectValue}
           onChange={handleContinentSelect}
         >

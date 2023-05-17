@@ -7,8 +7,8 @@ import NatoMembers from "../data/nato.json";
 import Header from "../components/Header";
 
 const Home = () => {
-  const [language, setLanguage] = useState("en");
   const [theme, setTheme] = useState("light");
+  const [language, setLanguage] = useState("en");
   const [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -27,6 +27,14 @@ const Home = () => {
       return response.json();
     }
   };
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   useEffect(() => {
     fetchData()
@@ -158,11 +166,15 @@ const Home = () => {
   return (
     <SiteContext.Provider value={data}>
       <div
-        className={isLoaded ? "" : "flex flex-col min-h-screen justify-between"}
+        className={
+          isLoaded
+            ? "dark:bg-dark"
+            : "flex flex-col min-h-screen justify-between"
+        }
       >
         <Header />
         <Topbar />
-        <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl">
+        <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl dark:border">
           {isLoaded ? (
             shownCountries.map((country, index) => {
               return (
@@ -170,7 +182,7 @@ const Home = () => {
               );
             })
           ) : (
-            <p className="text-light">Loading...</p>
+            <p className="text-light mx-auto">Loading...</p>
           )}
         </div>
         <Footer />

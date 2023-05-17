@@ -3,6 +3,7 @@ import SiteContext from "./context/SiteContext";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import { useContext } from "react";
 
 const App = () => {
   return (

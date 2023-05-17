@@ -3,14 +3,17 @@ import SiteContext from "../context/SiteContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faToggleOn, faSun } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import Icon from "../assets/react.svg";
 
 const Header = () => {
   const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
 
   return (
-    <header className="bg-dark w-full py-2">
+    <header className="bg-dark dark:border w-full py-2">
       <div className="flex justify-between w-5/6 mx-auto">
-        <div>some text</div>
+        <div>
+          <img src={Icon} />
+        </div>
         <div className="h1">
           <a href="/">Countries</a>
         </div>
