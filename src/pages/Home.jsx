@@ -150,6 +150,7 @@ const Home = () => {
     language,
     setLanguage,
     orderByArea,
+    initialCountry,
     handleOrderByArea,
     natoMember,
     handleNatoMemberSort,

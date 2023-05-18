@@ -1,17 +1,23 @@
 import { Link, Routes, Route, NavLink } from "react-router-dom";
 import SiteContext from "./context/SiteContext";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Blog from "./pages/Blog";
-import { useContext } from "react";
+import CountryDetails from "./components/CountryDetails";
 
 const App = () => {
+  let initialCountry;
+  const data = { initialCountry };
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/blog" element={<Blog />} />
-    </Routes>
+    <SiteContext.Provider value={data}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/countries/:countryName" element={<CountryDetails />} />
+
+        <Route path="/about" element={<About />} />
+        <Route path="/blog" element={<Blog />} />
+      </Routes>
+    </SiteContext.Provider>
   );
 };
 

@@ -4,7 +4,12 @@ import SiteContext from "../context/SiteContext";
 const CountryCard = ({ country, index }) => {
   const { orderByArea, orderByPopulation } = useContext(SiteContext);
   return (
-    <div className="w-56 mx-auto my-4 bg-light dark:bg-dark dark:text-light dark:border rounded-xl font-dark font-mono">
+    <div
+      onClick={() => {
+        <Link to={country.name.common} />;
+      }}
+      className="w-56 mx-auto my-4 bg-light dark:bg-dark dark:text-light dark:border rounded-xl font-dark font-mono"
+    >
       <img
         className="h-36 w-full rounded-t-xl"
         src={country.flags.png}

@@ -1,8 +1,13 @@
 import { useContext } from "react";
 import SiteContext from "../context/SiteContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faToggleOn, faSun } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {
+  faMoon,
+  faToggleOn,
+  faSun,
+  faToggleOff,
+} from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 import Icon from "../assets/react.svg";
 
 const Header = () => {
@@ -15,35 +20,43 @@ const Header = () => {
           <img src={Icon} />
         </div>
         <div className="h1">
-          <a href="/">Countries</a>
+          <NavLink to="/">Countries</NavLink>
         </div>
-        <div className="text-white flex px-4">
-          <p>{theme}</p>
+        <div className="text-white flex px-4 my-auto">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about" className="ml-2">
+            About
+          </NavLink>
           {theme == "light" ? (
             <FontAwesomeIcon
-              className="mx-4"
+              className="mx-4 text-2xl"
               icon={faMoon}
               onClick={() => setTheme("dark")}
             />
           ) : (
             <FontAwesomeIcon
-              className="mx-4"
+              className="mx-4 text-2xl"
               icon={faSun}
               onClick={() => setTheme("light")}
             />
           )}
-          <p>{language}</p>
-          <FontAwesomeIcon
-            icon={faToggleOn}
-            onClick={() =>
-              language == "en" ? setLanguage("tr") : setLanguage("en")
-            }
-          />
-          {/* <nav>
-          <Link to="/">Home</Link>
-          <Link to="/contact">Contact</Link>
-          <Link to="/blog">Blog</Link>
-        </nav> */}
+          {language === "en" ? (
+            <FontAwesomeIcon
+              className="text-2xl"
+              icon={faToggleOn}
+              onClick={() =>
+                language == "en" ? setLanguage("tr") : setLanguage("en")
+              }
+            />
+          ) : (
+            <FontAwesomeIcon
+              className="text-2xl"
+              icon={faToggleOff}
+              onClick={() =>
+                language == "en" ? setLanguage("tr") : setLanguage("en")
+              }
+            />
+          )}
         </div>
       </div>
     </header>

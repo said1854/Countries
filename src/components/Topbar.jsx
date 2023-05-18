@@ -44,7 +44,7 @@ const Topbar = () => {
         <input
           placeholder="Search Country"
           type="text"
-          className="bg-light rounded-xl px-4 py-2"
+          className="bg-light dark:bg-dark dark:text-white dark:border rounded-xl px-4 py-2"
           onChange={handleSearch}
         />
       </div>
