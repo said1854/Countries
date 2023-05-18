@@ -3,7 +3,6 @@ import SiteContext from "../context/SiteContext";
 
 const Footer = () => {
   const { isLoaded } = useContext(SiteContext);
-  console.log(isLoaded);
   return (
     <div>
       {isLoaded ? (

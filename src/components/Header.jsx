@@ -16,17 +16,16 @@ const Header = () => {
   return (
     <header className="bg-dark dark:border w-full py-2">
       <div className="flex justify-between w-5/6 mx-auto">
-        <div>
-          <img src={Icon} />
+        <div className="text-white my-auto">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about" className="ml-2">
+            About
+          </NavLink>
         </div>
         <div className="h1">
           <NavLink to="/">Countries</NavLink>
         </div>
         <div className="text-white flex px-4 my-auto">
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about" className="ml-2">
-            About
-          </NavLink>
           {theme == "light" ? (
             <FontAwesomeIcon
               className="mx-4 text-2xl"

@@ -1,16 +1,17 @@
 import { useParams } from "react-router-dom";
 import SiteContext from "../context/SiteContext";
 import { useContext } from "react";
+import Header from "./Header";
 
 const CountryDetails = () => {
-  const { initialCountry } = useContext(SiteContext);
-  console.log(initialCountry);
+  let data = useContext(SiteContext);
+  console.log(data);
   const params = useParams();
   const countrName = params.countryName;
   return (
     <div>
+      <Header />
       <p>{countrName}</p>
-      {/* <p>{shownCountries}</p> */}
     </div>
   );
 };

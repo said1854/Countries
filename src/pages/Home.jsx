@@ -9,7 +9,7 @@ import Header from "../components/Header";
 const Home = () => {
   const [theme, setTheme] = useState("light");
   const [language, setLanguage] = useState("en");
-  const [initialCountry, setInitialCountry] = useState([]);
+  let [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectValue, setSelectValue] = useState();
@@ -40,19 +40,19 @@ const Home = () => {
     fetchData()
       .then((res) => {
         console.log(res);
-        const sortedRes = res.sort((a, b) => {
-          let fa = a.name.common.toLowerCase();
-          let fb = b.name.common.toLowerCase();
-          if (fa < fb) {
-            return -1;
-          }
-          if (fa > fb) {
-            return 1;
-          }
-          return 0;
-        });
-        setInitialCountry(sortedRes);
-        setShownCountries(sortedRes);
+        // const sortedRes = res.sort((a, b) => {
+        //   let fa = a.name.common.toLowerCase();
+        //   let fb = b.name.common.toLowerCase();
+        //   if (fa < fb) {
+        //     return -1;
+        //   }
+        //   if (fa > fb) {
+        //     return 1;
+        //   }
+        //   return 0;
+        // });
+        setInitialCountry(res);
+        setShownCountries(res);
         setIsLoaded(true);
       })
       .catch((e) => {
@@ -62,7 +62,6 @@ const Home = () => {
 
   const handleSearch = (e) => {
     const keyword = e.target.value.toLowerCase();
-    console.log(keyword);
     if (keyword == "") {
       setShownCountries(shownCountries);
     } else {
@@ -134,7 +133,6 @@ const Home = () => {
       const newArray = shownCountries.filter((country) => {
         return NatoMembers.includes(country.name.common);
       });
-      console.log(newArray);
       setShownCountries(newArray);
     } else {
       setShownCountries(initialCountry);
