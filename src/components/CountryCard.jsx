@@ -11,21 +11,37 @@ const CountryCard = ({ country, index }) => {
         src={country.flags.png}
         alt={country.flags.alt}
       />
-      <div className="text-sm p-2">
+      <div className="text-sm p-2 flex flex-col justify-start">
         <div className="text-xl font-serif flex">
           {orderByArea && !orderByPopulation ? <h4>{index + 1} -</h4> : <></>}
           {orderByPopulation && !orderByArea ? <h4>{index + 1} -</h4> : <></>}
           {country.name.common}
         </div>
-        <p>Population: {country.population.toLocaleString()}</p>
-        <p>Area: {country.area.toLocaleString()} km2</p>
-        <p>Capital: {country.capital}</p>
-        <p>
-          <span className="bold">Continent:</span> {country.continents}
-        </p>
-        <Link to={`/countries/${country.name.common}`}>
-          <div className="btn">View Details</div>
-        </Link>
+        <div>
+          {orderByPopulation ? (
+            <p className="underline">
+              Population: {country.population.toLocaleString()}
+            </p>
+          ) : (
+            <p>Population: {country.population.toLocaleString()}</p>
+          )}
+          {orderByArea ? (
+            <p className="underline">
+              Area: {country.area.toLocaleString()} km2
+            </p>
+          ) : (
+            <p>Area: {country.area.toLocaleString()} km2</p>
+          )}
+          <p>Capital: {country.capital}</p>
+          <p>
+            <span className="bold">Continent:</span> {country.continents}
+          </p>
+        </div>
+        <div>
+          <Link to={`/countries/${country.name.common}`}>
+            <div className="btn">View Details</div>
+          </Link>
+        </div>
       </div>
     </div>
   );

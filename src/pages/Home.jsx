@@ -40,17 +40,6 @@ const Home = () => {
     fetchData()
       .then((res) => {
         console.log(res);
-        // const sortedRes = res.sort((a, b) => {
-        //   let fa = a.name.common.toLowerCase();
-        //   let fb = b.name.common.toLowerCase();
-        //   if (fa < fb) {
-        //     return -1;
-        //   }
-        //   if (fa > fb) {
-        //     return 1;
-        //   }
-        //   return 0;
-        // });
         setInitialCountry(res);
         setShownCountries(res);
         setIsLoaded(true);

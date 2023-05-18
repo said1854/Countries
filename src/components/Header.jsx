@@ -14,7 +14,7 @@ const Header = () => {
   const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
 
   return (
-    <header className="bg-dark dark:border w-full py-2">
+    <header className="bg-dark  dark:bg-darker w-full py-2">
       <div className="flex justify-between w-5/6 mx-auto">
         <div className="text-white my-auto">
           <NavLink to="/">Home</NavLink>
