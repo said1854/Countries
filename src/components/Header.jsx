@@ -14,16 +14,18 @@ const Header = () => {
   const { theme, setTheme, language, setLanguage } = useContext(SiteContext);
 
   return (
-    <header className="bg-dark  dark:bg-darker w-full py-2">
+    <header className="bg-dark  dark:bg-darker dark:border w-full py-2">
       <div className="flex justify-between w-5/6 mx-auto">
         <div className="text-white my-auto">
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/">{language === "en" ? "Home" : "Anasayfa"}</NavLink>
           <NavLink to="/about" className="ml-2">
-            About
+            {language === "en" ? "About" : "Hakkımızda"}
           </NavLink>
         </div>
         <div className="h1">
-          <NavLink to="/">Countries</NavLink>
+          <NavLink to="/">
+            {language === "en" ? "Countries" : "Ülkeler"}
+          </NavLink>
         </div>
         <div className="text-white flex px-4 my-auto">
           {theme == "light" ? (

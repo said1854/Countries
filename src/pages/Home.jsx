@@ -156,13 +156,13 @@ const Home = () => {
       <div
         className={
           isLoaded
-            ? "dark:bg-dark"
+            ? "dark:bg-darker"
             : "flex flex-col min-h-screen justify-between"
         }
       >
         <Header />
         <Topbar />
-        <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark mt-8 rounded-xl dark:border">
+        <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark dark:bg-darker mt-8 rounded-xl dark:border">
           {isLoaded ? (
             shownCountries.map((country, index) => {
               return (
