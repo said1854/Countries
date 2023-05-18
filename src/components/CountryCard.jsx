@@ -11,7 +11,7 @@ const CountryCard = ({ country, index }) => {
         src={country.flags.png}
         alt={country.flags.alt}
       />
-      <div className="text-sm p-2 flex flex-col">
+      <div className="text-sm p-2 flex flex-col justify-between">
         <div className="text-xl font-serif flex">
           {orderByArea && !orderByPopulation ? <h4>{index + 1} -</h4> : <></>}
           {orderByPopulation && !orderByArea ? <h4>{index + 1} -</h4> : <></>}
@@ -50,9 +50,9 @@ const CountryCard = ({ country, index }) => {
             {country.continents}
           </p>
         </div>
-        <div className="end">
+        <div>
           <Link to={`/countries/${country.name.common}`}>
-            <div className="btn">
+            <div className="btn px-4">
               {language === "en" ? "View Details" : "Detaylar"}
             </div>
           </Link>

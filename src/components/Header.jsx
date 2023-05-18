@@ -6,6 +6,7 @@ import {
   faToggleOn,
   faSun,
   faToggleOff,
+  faLanguage,
 } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import Icon from "../assets/react.svg";
@@ -41,23 +42,14 @@ const Header = () => {
               onClick={() => setTheme("light")}
             />
           )}
-          {language === "en" ? (
-            <FontAwesomeIcon
-              className="text-2xl"
-              icon={faToggleOn}
-              onClick={() =>
-                language == "en" ? setLanguage("tr") : setLanguage("en")
-              }
-            />
-          ) : (
-            <FontAwesomeIcon
-              className="text-2xl"
-              icon={faToggleOff}
-              onClick={() =>
-                language == "en" ? setLanguage("tr") : setLanguage("en")
-              }
-            />
-          )}
+          {language === "tr" ? "tr" : "en"}
+          <FontAwesomeIcon
+            className="pl-4 text-2xl"
+            icon={faLanguage}
+            onClick={() =>
+              language == "en" ? setLanguage("tr") : setLanguage("en")
+            }
+          />
         </div>
       </div>
     </header>

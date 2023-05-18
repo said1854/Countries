@@ -24,7 +24,7 @@ const CountryDetails = () => {
       .then((res) => {
         console.log(res);
         setIsLoaded(true);
-        setDetails(res);
+        setDetails(res[0]);
       })
       .catch((e) => {
         console.log(e.message);
