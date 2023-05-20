@@ -41,13 +41,16 @@ const CountryDetails = () => {
         <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-light mt-8 rounded-xl dark:border">
           <div className="flex flex-col mx-auto my-4">
             <h1 className="flex flex-row justify-start mb-4">
+              <img src={details?.flags.png} alt="" />
               {details?.flag} | {details?.name?.official}
             </h1>
 
             <ul className="flex flex-col mt-4">
               <li>
-                <span>Area: </span>
-                <span>{details.area}</span>
+                <span>Area: {details.area}</span>
+              </li>
+              <li>
+                <span>Capital: {details.capital} </span>
               </li>
             </ul>
 
