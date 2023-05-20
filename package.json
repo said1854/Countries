@@ -1,7 +1,8 @@
 {
   "name": "countries",
   "private": true,
-  "version": "0.0.0",
+  "version": "v1.0.0",
+  "homepage": "https://countries-said1854.vercel.app",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,0 +1,45 @@
+# EditorConfig is awesome: https://EditorConfig.org
+root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 80
+
+# JavaScript and TypeScript file formatting settings
+[*.js]
+[*.jsx]
+[*.ts]
+[*.tsx]
+indent_size = 2
+
+# Markdown file formatting settings
+[*.md]
+trim_trailing_whitespace = false
+
+# CSS, SCSS, and SASS file formatting settings
+[*.css]
+[*.scss]
+indent_size = 2
+
+# PHP file formatting settings
+[*.php]
+indent_size = 4
+
+# Python file formatting settings
+[*.py]
+indent_size = 4
+
+# Blade file formatting settings
+[*.blade.php]
+indent_size = 4
+
+# Jinja, Jade, and Pug file formatting settings
+[*.jinja]
+[*.jade]
+[*.pug]
+indent_style = tab

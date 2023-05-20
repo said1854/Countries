@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from "react";
-import SiteContext from "../context/SiteContext";
-import Topbar from "../components/Topbar";
-import Footer from "../components/Footer";
-import CountryCard from "../components/CountryCard";
-import NatoMembers from "../data/nato.json";
-import Header from "../components/Header";
+import { useContext, useEffect, useState } from 'react';
+import SiteContext from '../context/SiteContext';
+import Topbar from '../components/Topbar';
+import Footer from '../components/Footer';
+import CountryCard from '../components/CountryCard';
+import NatoMembers from '../data/nato.json';
+import Header from '../components/Header';
 
 const Home = () => {
-  const [theme, setTheme] = useState("light");
-  const [language, setLanguage] = useState("en");
+  const [theme, setTheme] = useState('light');
+  const [language, setLanguage] = useState('en');
   let [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -20,42 +20,42 @@ const Home = () => {
   const [natoMember, setNatoMember] = useState(false);
 
   const fetchData = async () => {
-    const response = await fetch("https://restcountries.com/v3.1/all");
+    const response = await fetch('https://restcountries.com/v3.1/all');
     if (!response.ok) {
-      throw new Error("Data coud not be fetched!");
+      throw new Error('Data coud not be fetched!');
     } else {
       return response.json();
     }
   };
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
     } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove('dark');
     }
   }, [theme]);
 
   useEffect(() => {
     fetchData()
       .then((res) => {
-        console.log(res);
+        console.debug(res);
         setInitialCountry(res);
         setShownCountries(res);
         setIsLoaded(true);
       })
       .catch((e) => {
-        console.log(e.message);
+        console.debug(e.message);
       });
   }, []);
 
   const handleSearch = (e) => {
     const keyword = e.target.value.toLowerCase();
-    if (keyword == "") {
+    if (keyword == '') {
       setShownCountries(shownCountries);
     } else {
       const newArray = initialCountry.filter((country) =>
-        country.name.common.toLowerCase().includes(keyword.toLowerCase())
+        country.name.common.toLowerCase().includes(keyword.toLowerCase()),
       );
       setShownCountries(newArray);
     }
@@ -66,10 +66,10 @@ const Home = () => {
     setOrderByPopulation(false);
     setOrderByArea(false);
     setNatoMember(false);
-    if (e.target.value == "all") {
+    if (e.target.value == 'all') {
       setShownCountries(initialCountry);
       setSortByContinent(false);
-    } else if (e.target.value !== "") {
+    } else if (e.target.value !== '') {
       const newArray = initialCountry.filter((country) => {
         return (
           country.continents[0].toLowerCase() == e.target.value.toLowerCase()
@@ -125,7 +125,7 @@ const Home = () => {
       setShownCountries(newArray);
     } else {
       setShownCountries(initialCountry);
-      setSelectValue("");
+      setSelectValue('');
     }
     setOrderByArea(false);
     setOrderByPopulation(false);
@@ -156,8 +156,8 @@ const Home = () => {
       <div
         className={
           isLoaded
-            ? "dark:bg-darker"
-            : "flex flex-col min-h-screen justify-between"
+            ? 'dark:bg-darker'
+            : 'flex flex-col min-h-screen justify-between'
         }
       >
         <Header />

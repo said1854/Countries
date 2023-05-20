@@ -1,5 +1,7 @@
 # Countries
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/said1854/Countries)
+
 Countries is a web application for exploring Countries.
 
 ## Installation

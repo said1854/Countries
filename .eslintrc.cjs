@@ -14,4 +14,12 @@ module.exports = {
   rules: {
     "react-refresh/only-export-components": "warn",
   },
+  overrides: [
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "max-len": ["error", { "code": 80 }]
+      }
+    }
+  ]
 };
