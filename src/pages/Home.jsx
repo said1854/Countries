@@ -5,6 +5,7 @@ import Footer from '../components/Footer';
 import CountryCard from '../components/CountryCard';
 import NatoMembers from '../data/nato.json';
 import Header from '../components/Header';
+import importCsv from '../utils/importCsv';
 
 const Home = () => {
   const [theme, setTheme] = useState('light');
