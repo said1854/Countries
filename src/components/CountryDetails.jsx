@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Header from './Header';
-import Papa from 'papaparse';
-import importCsv from '../utils/importCsv';
+import SiteContext from '../context/SiteContext';
+// import Papa from 'papaparse';
+// import importCsv from '../utils/importCsv';
 
 const CountryDetails = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -13,42 +14,49 @@ const CountryDetails = () => {
   const [rows, setRows] = useState([]);
   const countryName = params.countryName;
 
-  const getGdp = async () => {
-    fetch(csvData)
-      .then((response) => response.text())
-      .then((data) => {
-        const parsedData = Papa.parse(data);
-        // Process the CSV data here
-      })
-      .catch((error) => {
-        // Handle any errors
-      });
-  };
-
-  const fetchData = async (country) => {
-    const response = await fetch(
-      `https://restcountries.com/v3.1/name/${country}`,
-    );
-    if (!response.ok) {
-      throw new Error('Data coud not be fetched!');
-    } else {
-      return response.json();
-    }
-  };
-
+  const { shownCountries } = useContext(SiteContext);
   useEffect(() => {
-    fetchData(countryName)
-      .then((res) => {
-        setIsLoaded(true);
-        setDetails(res[0]);
-        console.debug('res \n', res[0]);
-      })
-      .catch((e) => {
-        setIsLoaded(false);
-        setDetails(initDetail);
-        console.debug(e.message);
-      });
+    const [currentCountry] = shownCountries.filter((country) => {
+      return countryName == country.name.common;
+    });
+    setDetails(currentCountry);
   }, []);
+  // const getGdp = async () => {
+  //   fetch(csvData)
+  //     .then((response) => response.text())
+  //     .then((data) => {
+  //       const parsedData = Papa.parse(data);
+  //       // Process the CSV data here
+  //     })
+  //     .catch((error) => {
+  //       // Handle any errors
+  //     });
+  // };
+
+  // const fetchData = async (country) => {
+  //   const response = await fetch(
+  //     `https://restcountries.com/v3.1/name/${country}`,
+  //   );
+  //   if (!response.ok) {
+  //     throw new Error('Data coud not be fetched!');
+  //   } else {
+  //     return response.json();
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchData(countryName)
+  //     .then((res) => {
+  //       setIsLoaded(true);
+  //       setDetails(res[0]);
+  //       console.debug('res \n', res[0]);
+  //     })
+  //     .catch((e) => {
+  //       setIsLoaded(false);
+  //       setDetails(initDetail);
+  //       console.debug(e.message);
+  //     });
+  // }, []);
 
   return (
     <div>
