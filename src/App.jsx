@@ -131,12 +131,19 @@ const App = () => {
     setOrderByPopulation(false);
   };
 
+  useEffect(() => {
+    localStorage.setItem('initialCountry', initialCountry);
+    console.log('countries written to local storage');
+    console.log(initialCountry);
+  }, [initialCountry]);
+
   const data = {
     theme,
     setTheme,
     language,
     setLanguage,
     orderByArea,
+    shownCountries,
     initialCountry,
     handleOrderByArea,
     natoMember,

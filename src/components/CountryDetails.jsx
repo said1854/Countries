@@ -2,64 +2,30 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import Header from './Header';
 import SiteContext from '../context/SiteContext';
-// import Papa from 'papaparse';
-// import importCsv from '../utils/importCsv';
+import Footer from './Footer';
 
 const CountryDetails = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const initDetail = null;
+  const [refreshPage, setRefreshPage] = useState([]);
   const [details, setDetails] = useState(initDetail);
-  const [gdp, setGdp] = useState([]);
   const params = useParams();
-  const [rows, setRows] = useState([]);
   const countryName = params.countryName;
 
-  const { shownCountries } = useContext(SiteContext);
+  const { shownCountries, theme } = useContext(SiteContext);
   useEffect(() => {
     const [currentCountry] = shownCountries.filter((country) => {
       return countryName == country.name.common;
     });
     setDetails(currentCountry);
   }, []);
-  // const getGdp = async () => {
-  //   fetch(csvData)
-  //     .then((response) => response.text())
-  //     .then((data) => {
-  //       const parsedData = Papa.parse(data);
-  //       // Process the CSV data here
-  //     })
-  //     .catch((error) => {
-  //       // Handle any errors
-  //     });
-  // };
 
-  // const fetchData = async (country) => {
-  //   const response = await fetch(
-  //     `https://restcountries.com/v3.1/name/${country}`,
-  //   );
-  //   if (!response.ok) {
-  //     throw new Error('Data coud not be fetched!');
-  //   } else {
-  //     return response.json();
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchData(countryName)
-  //     .then((res) => {
-  //       setIsLoaded(true);
-  //       setDetails(res[0]);
-  //       console.debug('res \n', res[0]);
-  //     })
-  //     .catch((e) => {
-  //       setIsLoaded(false);
-  //       setDetails(initDetail);
-  //       console.debug(e.message);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const initialCountry = localStorage.getItem('initialCountry');
+    console.log(initialCountry);
+  }, []);
 
   return (
-    <div>
+    <div className="min-h-screen dark:bg-darker">
       <Header />
       {details !== initDetail ? (
         <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-light mt-8 rounded-xl dark:border">
@@ -72,10 +38,10 @@ const CountryDetails = () => {
 
             <ul className="flex flex-col mt-4">
               <li>
-                <span>Area: {details.area}</span>
+                <span>Area: {details?.area}</span>
               </li>
               <li>
-                <span>Capital: {details.capital} </span>
+                <span>Capital: {details?.capital} </span>
               </li>
             </ul>
 
@@ -97,6 +63,7 @@ const CountryDetails = () => {
           <p>Loading...</p>
         </div>
       )}
+      <Footer />
     </div>
   );
 };

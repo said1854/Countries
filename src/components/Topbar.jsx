@@ -16,6 +16,7 @@ const Topbar = () => {
     selectValue,
     handleSearch,
   } = useContext(SiteContext);
+
   return (
     <div className="md:flex justify-between w-5/6 mx-auto mt-4">
       <div className="w-1/3 flex">
@@ -60,7 +61,7 @@ const Topbar = () => {
           value={selectValue}
           onChange={handleContinentSelect}
         >
-          <option value="" disabled selected>
+          <option value="">
             {language === 'en' ? 'Select Continent' : 'Kıta Seçimi'}
           </option>
           <option value="asia">{language === 'en' ? 'Asia' : 'Asya'}</option>

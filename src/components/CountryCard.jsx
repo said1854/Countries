@@ -20,32 +20,32 @@ const CountryCard = ({ country, index }) => {
         <div>
           {orderByPopulation ? (
             <p className="underline">
-              {language === "en" ? "Population" : "Nüfus"}:
+              {language === 'en' ? 'Population' : 'Nüfus'}:
               {country.population.toLocaleString()}
             </p>
           ) : (
             <p>
-              {language === "en" ? "Population" : "Nüfus"}:
+              {language === 'en' ? 'Population' : 'Nüfus'}:
               {country.population.toLocaleString()}
             </p>
           )}
           {orderByArea ? (
             <p className="underline">
-              {language === "en" ? "Area" : "Yüzölçümü"}:
+              {language === 'en' ? 'Area' : 'Yüzölçümü'}:
               {country.area.toLocaleString()} km2
             </p>
           ) : (
             <p>
-              {language === "en" ? "Area" : "Yüzölçümü"}:
+              {language === 'en' ? 'Area' : 'Yüzölçümü'}:
               {country.area.toLocaleString()} km2
             </p>
           )}
           <p>
-            {language === "en" ? "Capital" : "Başkent"}:{country.capital}
+            {language === 'en' ? 'Capital' : 'Başkent'}:{country.capital}
           </p>
           <p>
             <span className="bold">
-              {language === "en" ? "Continent" : "Bulunduğu kıta"}:
+              {language === 'en' ? 'Continent' : 'Bulunduğu kıta'}:
             </span>
             {country.continents}
           </p>
@@ -53,7 +53,7 @@ const CountryCard = ({ country, index }) => {
         <div>
           <Link to={`/countries/${country.name.common}`}>
             <div className="btn px-4">
-              {language === "en" ? "View Details" : "Detaylar"}
+              {language === 'en' ? 'View Details' : 'Detaylar'}
             </div>
           </Link>
         </div>

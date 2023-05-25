@@ -12,14 +12,14 @@ const Home = () => {
     <div
       className={
         isLoaded
-          ? 'dark:bg-darker'
+          ? 'min-h-screen justify-between dark:bg-darker'
           : 'flex flex-col min-h-screen justify-between'
       }
     >
       <Header />
       <Topbar />
-      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark dark:bg-darker mt-8 rounded-xl dark:border">
-        {isLoaded ? (
+      <div className="w-5/6 mx-auto p-6 container flex flex-wrap bg-dark dark:bg-darker my-8 rounded-xl dark:border">
+        {isLoaded && shownCountries ? (
           shownCountries.map((country, index) => {
             return <CountryCard country={country} index={index} key={index} />;
           })
