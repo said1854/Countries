@@ -5,21 +5,15 @@ import SiteContext from '../context/SiteContext';
 import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import dotenv from 'dotenv';
-import process from 'process';
-
-dotenv.config();
 
 const CountryDetails = () => {
-  const apiKey = process.env.REACT_APP_STATIC_IMAGE_API_KEY;
-  console.log(apiKey);
   const initDetail = null;
   const [refreshPage, setRefreshPage] = useState([]);
   const [details, setDetails] = useState(initDetail);
   const params = useParams();
   const navigate = useNavigate();
   const countryName = params.countryName;
-  const { shownCountries, theme } = useContext(SiteContext);
+  const { shownCountries } = useContext(SiteContext);
   useEffect(() => {
     const [currentCountry] = shownCountries.filter((country) => {
       return countryName == country.name.common;
