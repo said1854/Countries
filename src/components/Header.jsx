@@ -19,7 +19,7 @@ const Header = () => {
       <div className="flex justify-between w-5/6 mx-auto">
         <div className="text-white my-auto">
           <NavLink to="/">{language === 'en' ? 'Home' : 'Anasayfa'}</NavLink>
-          <NavLink to="/about" className="ml-2">
+          <NavLink to="/about" className="ml-4">
             {language === 'en' ? 'About' : 'Hakkımızda'}
           </NavLink>
         </div>

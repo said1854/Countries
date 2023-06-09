@@ -11,13 +11,13 @@ const CountryCard = ({ country, index }) => {
         src={country.flags.png}
         alt={country.flags.alt}
       />
-      <div className="text-sm p-2 flex flex-col justify-between">
+      <div className="text-sm p-2 flex flex-col justify-">
         <div className="text-xl font-serif flex">
           {orderByArea && !orderByPopulation ? <h4>{index + 1} -</h4> : <></>}
           {orderByPopulation && !orderByArea ? <h4>{index + 1} -</h4> : <></>}
           {country.name.common}
         </div>
-        <div>
+        <div className="flex flex-col justify-between">
           {orderByPopulation ? (
             <p className="underline">
               {language === 'en' ? 'Population' : 'Nüfus'}:
@@ -45,12 +45,12 @@ const CountryCard = ({ country, index }) => {
           </p>
           <p>
             <span className="bold">
-              {language === 'en' ? 'Continent' : 'Bulunduğu kıta'}:
+              {language === 'en' ? 'Continent' : 'Kıtası'}:
             </span>
             {country.continents}
           </p>
         </div>
-        <div>
+        <div className="justify-self-end">
           <Link to={`/countries/${country.name.common}`}>
             <div className="btn px-4">
               {language === 'en' ? 'View Details' : 'Detaylar'}
