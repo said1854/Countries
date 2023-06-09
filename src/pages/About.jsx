@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div className="flex flex-col justify-between min-h-screen">
       <Header />
-      <main class="bg-white py-8 px-4 md:px-8">
+      <main class="bg-light py-8 px-4 md:px-8 w-5/6  mx-auto text-dark font-mono">
         <div class="max-w-4xl mx-auto">
           <h1 class="text-3xl font-bold mb-4">About Me</h1>
           <p class="text-gray-700 mb-6">
