@@ -17,12 +17,16 @@ const CountryDetails = () => {
   useEffect(() => {
     const [currentCountry] = shownCountries.filter((country) => {
       return countryName == country.name.common;
+      console.log(countryName);
     });
     setDetails(currentCountry);
   }, []);
-  useEffect(() => {
-    const initialCountry = localStorage.getItem('initialCountry');
-  }, []);
+  // useEffect(() => {
+  //   const initialCountry = localStorage.getItem('initialCountry');
+  // }, []);
+
+  const truncate = (input) =>
+    input?.length > 15 ? `${input.substring(0, 15)}...` : input;
 
   return (
     <div className="flex flex-col justify-between min-h-screen dark:bg-darker">
@@ -31,15 +35,18 @@ const CountryDetails = () => {
         <>
           <div className="w-5/6 mx-auto">
             <button
-              className="btn w-56 h-12 px-2"
+              className="btn w-56 h-12 px-2 my-4"
               onClick={() => navigate('/')}
             >
-              <FontAwesomeIcon className="mr-8 text-2xl" icon={faArrowLeft} />
+              <FontAwesomeIcon
+                className="mr-8 text-2xl MY"
+                icon={faArrowLeft}
+              />
               {language === 'en' ? 'Back to Main' : 'Ana Sayfaya Dön'}
             </button>
           </div>
           <div className="w-5/6 mx-auto text-xl text-darker p-6 container flex flex-wrap bg-light dark:bg-darker dark:text-light rounded-xl dark:border">
-            <div className="flex flex-row my-4">
+            <div className="flex flex-row flex-wrap my-4">
               <div className="flex flex-col m-4 p-2 shadow-lg">
                 <h1 className="flex flex-row justify-start mb-4">
                   {details?.flag} | {details?.name?.official}
@@ -49,6 +56,8 @@ const CountryDetails = () => {
                   alt={details?.flags.alt}
                   className=""
                 />
+                <p>Coat of Arms</p>
+                <img src={details?.coatOfArms.png} alt="--" className="w-96" />
               </div>
               <p></p>
 
@@ -65,10 +74,15 @@ const CountryDetails = () => {
                 <li>
                   <span>Capital: {details?.capital} </span>
                 </li>
+                <li className="flex flex-wrap">
+                  <span>
+                    {/* Borders: {details?.borders.map((country) => ' ' + country)} */}
+                  </span>
+                </li>
                 <li>
                   <span>
-                    Capital lat-lng: {details?.capitalInfo.latlng[0]}
-                    {','}
+                    Capital lat-lng: {details?.capitalInfo?.latlng[0]}
+                    {', '}
                     {details?.capitalInfo.latlng[1]}
                   </span>
                 </li>
@@ -85,13 +99,15 @@ const CountryDetails = () => {
                   </li>
                 ))}
               </ul>
-              <ul className="flex flex-col m-4 rounded-2xl p-2 border shadow-lg">
+              <ul className="flex flex-col m-4 rounded-2xl p-2 border shadow-lg max-w-lg">
                 <h3 className="flex flex-row justify-start m-4">
                   general info
                 </h3>
 
                 <li>
-                  <span>timezones: {details?.timezones}</span>
+                  <span className="truncate block max-w-full line-clamp-3 whitespace-normal">
+                    timezones: {details?.timezones}
+                  </span>
                 </li>
                 <li>
                   <span>Start of week: {details?.startOfWeek}</span>
@@ -101,6 +117,9 @@ const CountryDetails = () => {
                     Independent: {details?.independent ? 'True' : 'False'}
                   </span>
                 </li>
+                <li>
+                  <span>Traffic drive : {details?.car.side}</span>
+                </li>
                 {Object.keys(details?.currencies).map((key, idx) => (
                   <li key={idx}>
                     <span>
@@ -108,6 +127,16 @@ const CountryDetails = () => {
                       {key.toLocaleUpperCase()}
                     </span>
                     <span>{key.name}</span>
+                  </li>
+                ))}
+              </ul>
+              <ul className="flex flex-row m-4 rounded-2xl p-2 border shadow-lg">
+                {Object.keys(details?.translations).map((key, idx) => (
+                  <li key={idx}>
+                    <span>
+                      {idx + 1}-{key.toLocaleUpperCase()}:{' '}
+                    </span>
+                    <span>{details?.languages[key]}</span>
                   </li>
                 ))}
               </ul>

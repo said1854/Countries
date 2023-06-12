@@ -18,12 +18,14 @@ const Header = () => {
     <header className="bg-dark  dark:bg-darker dark:border w-full py-2">
       <div className="flex justify-between w-5/6 mx-auto">
         <div className="text-white my-auto">
-          <NavLink to="/">{language === 'en' ? 'Home' : 'Anasayfa'}</NavLink>
-          <NavLink to="/about" className="ml-4">
+          <NavLink to="/" className="md:ml-4">
+            {language === 'en' ? 'Home' : 'Anasayfa'}
+          </NavLink>
+          <NavLink to="/about" className="md:ml-4 ml-1 mr-2">
             {language === 'en' ? 'About' : 'Hakkımızda'}
           </NavLink>
         </div>
-        <div className="h1">
+        <div className="md:h1 text-xl text-light font-bold">
           <NavLink to="/">
             {language === 'en' ? 'Countries' : 'Ülkeler'}
           </NavLink>
