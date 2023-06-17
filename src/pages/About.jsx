@@ -43,9 +43,13 @@ const About = () => {
             let's bring your ideas to life!
           </p>
           <p className="text-2xl">
-            <a href="mailto:msaliogullari@gmail.com">Send email </a>
+            <a href="mailto:msaliogullari@gmail.com" className="btn mx-2">
+              Send email
+            </a>
             or contact me on
-            <a href="https://www.linkedin.com/in/said1854/"> linkedin</a>
+            <a href="https://www.linkedin.com/in/said1854/" className="btn m-2">
+              linkedin
+            </a>
           </p>
         </div>
       </main>

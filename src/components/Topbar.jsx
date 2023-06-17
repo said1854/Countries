@@ -50,7 +50,7 @@ const Topbar = () => {
         <input
           placeholder={language === 'en' ? 'Search Country' : 'Ülke ara'}
           type="text"
-          className="bg-light dark:bg-dark dark:text-white dark:border rounded-xl px-4 py-2 text-center"
+          className="bg-light dark:bg-dark dark:text-white dark:border rounded-xl px-4 py-2"
           onChange={handleSearch}
         />
       </div>
