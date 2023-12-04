@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 const App = () => {
   const [theme, setTheme] = useState('light');
   const [language, setLanguage] = useState('en');
-  let [initialCountry, setInitialCountry] = useState([]);
+  const [initialCountry, setInitialCountry] = useState([]);
   const [shownCountries, setShownCountries] = useState(initialCountry);
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectValue, setSelectValue] = useState();
