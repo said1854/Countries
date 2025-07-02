@@ -20,7 +20,7 @@ const App = () => {
   const [natoMember, setNatoMember] = useState(false);
 
   const fetchData = async () => {
-    const response = await fetch('https://restcountries.com/v3.1/all');
+    const response = await fetch('https://restcountries.com/v3.1/all?fields=name,capital,area,population,continents,flags,tld,currencies,languages,unMember');
     if (!response.ok) {
       throw new Error('Data coud not be fetched!');
     } else {
